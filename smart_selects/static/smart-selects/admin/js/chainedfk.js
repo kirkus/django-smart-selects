@@ -1,7 +1,8 @@
+var chainedfk ={};
 (function ($) {
     "use strict";
 
-    var chainedfk =  {
+    chainedfk =  {
         fireEvent: function (element, event) {
             var evt, rtn;
             if (document.createEventObject) {
