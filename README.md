@@ -4,8 +4,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/digi604/django-smart-selects/badge.svg?branch=master)](https://coveralls.io/github/digi604/django-smart-selects?branch=master)
 
-# CURRENTLY UNMAINTAINED - Please contact digi604 if you would like to maintain this app #
-
+# Maintained only for Kirkus purposes
+## Once Kirkus moves to Django 1.11, Make sure to replace this with [`django-autocomplete-light`](https://github.com/yourlabs/django-autocomplete-light).
 
 This package allows you to quickly filter or group "chained" models by adding a custom foreign key or many to many field to your models. This will use an AJAX query to load only the applicable chained objects.
 
