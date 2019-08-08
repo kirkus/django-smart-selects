@@ -56,30 +56,32 @@
         initItem(chained);
     }
 
-    $(document).on('formset:added', function (event, $row, formsetName) {
+    $(document).on('click', '.add-row a', function (event, $row, formsetName) {
         // Fired every time a new inline formset is created
 
         var chainedFK, chainedM2M, filteredM2M;
+        $(this).parent().siblings('.inline-related.last-related').not('.empty-form').last().each(function (i, v) {
+            $row = $(this);
+            // For the ForeingKey
+            chainedFK = $row.find(".chained-fk");
+            $.each(chainedFK, function (index, chained) {
+                initFormset(chained);
+            });
 
-        // For the ForeingKey
-        chainedFK = $row.find(".chained-fk");
-        $.each(chainedFK, function (index, chained) {
-            initFormset(chained);
-        });
+            // For the ManyToMany
+            chainedM2M = $row.find(".chained");
+            $.each(chainedM2M, function (index, chained) {
+                initFormset(chained);
+            });
 
-        // For the ManyToMany
-        chainedM2M = $row.find(".chained");
-        $.each(chainedM2M, function (index, chained) {
-            initFormset(chained);
-        });
-
-        // For the ManyToMany using horizontal=True added after the page load
-        // using javascript.
-        filteredM2M = $row.find(".filtered");
-        $.each(filteredM2M, function (index, filtered) {
-            if (filtered.hasAttribute('data-chainfield')) {
-                initFormset(filtered);
-            }
+            // For the ManyToMany using horizontal=True added after the page load
+            // using javascript.
+            filteredM2M = $row.find(".filtered");
+            $.each(filteredM2M, function (index, filtered) {
+                if (filtered.hasAttribute('data-chainfield')) {
+                    initFormset(filtered);
+                }
+            });
         });
     });
 }(jQuery || django.jQuery));
